@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="js/externalScript.js"></script>
+    <title>Jamie's Pizza Place</title>
+</head>
+<body>
+    <div class="main-container">
+        <div class="bg-1-container">
+            <header>
+                <h1>Jamie's Pizza Place</h1>
+                <h2>"People disappoint, but pizza never does"</h2>
+            </header>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Menu</a></li>
+                <li><a href="#">Our Story</a></li>
+                <li><a href="#">Contact us</a></li>
+                <li id="welcome"></li>
+                <li id="openSideBar"><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+
+            </ul>
+        </nav>
+        <div class="main-section">
+            <div class="form-popup">
+                <form action="#" class="login-form-container">
+                    <label for="username">Username </label>
+                    <br>
+                    <input type="text"  id="username" name="username" placeholder="Enter username" required>
+                    <br>
+                    <label for="password">Password </label>
+                    <br>
+                    <input type="password"  id="password" name="password" placeholder="Enter password" minlength="7" required>
+                    <br>
+                    <button type="submit" class="btn login" >Login</button>
+                    <button type="submit" class="btn close">Close</button> <!--For ease of accessing the page without have to login-->
+                </form>
+            </div>
+            <div class="sidebar">
+                <a href="#" id="closeSideBar">x</a>
+                <div class="cart">
+                    <div id="cart-list"></div>
+                    <div id="discount">
+                        <label>Discount Code:</label>
+                        <input type="text" id="discountCode" name="discount" required>
+                        <button type="submit"  class="btn apply" >Apply</button>
+                    </div>
+                    <div id="totalPrice" value="0"></div>
+                </div>
+            </div>
+
+            <div class="menu-container">
+                <h1>Most Popular</h1>
+                <p>(Large: &euro;5, Extra-Large: &euro;7,  SuperSize &euro;17)<p>
+                    <table>
+                        <tr class="menu-row-1">
+                            <td class="info-menu">
+                                <img src="image/ori.jpg">
+                                <form class="details-menu" id="original">
+                                    <h3>Original pizza</h3>
+                                    <p> Top crust with mozzarella cheese, onion, tomato, Feta cheese and basil.</p>
+                                    <select name="size" onchange="alertSize(this.value)" required> <!--event occurs when the value of an element has been changed-->
+                                        <option value="">Choose size</option>
+                                        <option value="L">Large</option>
+                                        <option value="XL">Extra-Large</option>
+                                        <option value="SS">Supersize</option>
+                                    </select>
+                                    <label>Qty:</label>
+                                    <input type="number" name="quantity" min="1" max="10" required>
+                                    <br><br>
+                                    <input type="submit" class="btn addToCart" onclick="getSubtotalPrice('original')" value="Add to Cart"> <!--cliking submit button will call getSubtotalPrice method with form id param-->
+                                </form>
+                            </td>
+                            <td class="info-menu">
+                                <img src="image/hawaii.jpg">
+                                <form class="details-menu" id="hawaiian">
+                                    <h3>Hawaiian pizza</h3>
+                                    <p> Top crust with mozzarella cheese, pineapple, onion, tomato, and olive.</p>
+                                    <select name="size" onchange="alertSize(this.value)" required> <!--event occurs when the value of an element has been changed-->
+                                        <option value="">Choose size</option>
+                                        <option value="L">Large</option>
+                                        <option value="XL">Extra-Large</option>
+                                        <option value="SS">Supersize</option>
+                                    </select>
+                                    <label>Qty:</label>
+                                    <input type="number"  name="quantity" min="1" max="10">
+                                    <br><br>
+                                    <input type="submit" class="btn addToCart" onclick="getSubtotalPrice('hawaiian')" value="Add to Cart">
+                                </form>
+                            </td>
+                        </tr>
+                        <br>
+                        <tr class="menu-row-2">
+                            <td class="info-menu">
+                                <img src="image/salami.jpg">
+                                <form class="details-menu" id="salami">
+                                    <h3>Salami pizza</h3>
+                                    <p> Top crust with mozzarella cheese, salami, jalepeno, onion, and basil.</p>
+                                    <select name="size" onchange="alertSize(this.value)" required> <!--event occurs when the value of an element has been changed-->
+                                        <option value="">Choose size</option>
+                                        <option value="L">Large</option>
+                                        <option value="XL">Extra-Large</option>
+                                        <option value="SS">Supersize</option>
+                                    </select>
+                                    <label>Qty:</label>
+                                    <input type="number"  name="quantity" min="1" max="10" required>
+                                    <br><br>
+                                    <input type="submit" class="btn addToCart" onclick="getSubtotalPrice('salami')" value="Add to Cart">
+                                </form> 
+                                <div id="added"></div> 
+                            </td>
+                            <td class="info-menu">
+                                <img src="image/cheezy.jpg">
+                                <form class="details-menu" id="cheezy">
+                                    <h3>Cheezy pizza</h3>
+                                    <p> Top crust with mozzarella cheese, onion, tomato, Feta cheese and basil.</p>
+                                    <select name="size" onchange="alertSize(this.value)"> <!--event occurs when the value of an element has been changed-->
+                                        <option value="">Choose size</option>
+                                        <option value="L">Large</option>
+                                        <option value="XL">Extra-Large</option>
+                                        <option value="SS">Supersize</option>
+                                    </select>
+                                    <label>Qty:</label>
+                                    <input type="number"  name="quantity" min="1" max="10">
+                                    <br><br>
+                                    <input type="submit" class="btn addToCart" onclick="getSubtotalPrice('cheezy')" value="Add to Cart">
+                                </form>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <footer></footer>
+        </div>
+    </body>
+</html>
